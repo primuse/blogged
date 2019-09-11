@@ -1,10 +1,11 @@
 from django.http import HttpResponse
+from django.shortcuts import render
 
 def home_page(request):
-  return HttpResponse("<h1>Hello</h1>")
+  return render(request, 'index.html')
 
 def about_page(request):
-  return HttpResponse("<h1>About Us</h1>")
+  return render(request, 'index.html')
 
 def contact_page(request):
-  return HttpResponse("<h1>Contact Us</h1>")
+  return render(request, 'index.html')
