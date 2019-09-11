@@ -1,0 +1,9 @@
+.pytest_cache
+*/__pycache__
+__pycache__
+*.DS_Store
+.vscode/
+.vscode/
+*.pyc
+Pipfile
+Pipfile.lock
