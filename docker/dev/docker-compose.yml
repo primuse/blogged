@@ -1,42 +1,13 @@
 version: '2.1'
-volumes:
-  travela_ml_ms_data:
-    external: true
 
 services:
-  app_ml:
+  blogged:
     build:
       context: ../../
       dockerfile: docker/dev/Dockerfile
-    links:
-      - database
     volumes:
       - ../../:/usr/app
     ports:
-      - '5000:5000'
-    env_file:
-      - ../../.env
-    environment:
-      DATABASE_URL: postgres://postgres:postgres@database/travela_ml_ms
+      - '8000:8000'
     entrypoint:
       - /usr/app/docker/dev/entrypoint.sh
-    depends_on:
-      database:
-        condition: service_healthy
-  database:
-    image: postgres:9.6-alpine
-    expose:
-      - '5432'
-    ports:
-      - '5434:5432'
-    volumes:
-      - travela_ml_ms_data:/var/lib/postgresql/data
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: travela_ml_ms
-    healthcheck:
-      test: ['CMD-SHELL', 'pg_isready -U postgres']
-      interval: 5s
-      timeout: 10s
-      retries: 5
